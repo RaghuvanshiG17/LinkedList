@@ -53,6 +53,35 @@ public class TestSingleLinkedList {
 		System.out.println("Delete by Position : "+sll.deleteFromPosition(3));
 		System.out.println(sll.printList());
 		System.out.println("Total length : "+sll.length);
+		System.out.println("Deleted Nth Node from the end : "+sll.retrunNthNodeFromEnd(4));	
+		System.out.println(sll.printList());
+		System.out.println("Length of the Linked List : "+sll.getListLength());
+		System.out.println("Search a perticular Key in Linked List : "+sll.searchPerticularKeyByLinear(8));
+		System.out.println("Search a perticular Key in Linked List : "+sll.searchPerticularKeyByLinear(2));
+		System.out.println("Search a perticular Key in Linked List : "+sll.searchPerticularKeyByLinear(4));
+		System.out.println("Search a perticular Key in Linked List : "+sll.searchPerticularKeyByLinear(5));
+		System.out.println("Search a perticular Key in Linked List : "+sll.searchPerticularKeyByLinear(6));
+		System.out.println("Search a perticular Key in Linked List : "+sll.searchPerticularKeyByLinear(7));
+		System.out.println("-------------------------------------------------------------------------------");
+		System.out.println(sll.printList());
+		System.out.println("Search a perticular Key in Linked List : "+sll.searchPerticularKeyByRecursive(sll.head, 8));
+		System.out.println("Search a perticular Key in Linked List : "+sll.searchPerticularKeyByRecursive(sll.head, 2));
+		System.out.println("Search a perticular Key in Linked List : "+sll.searchPerticularKeyByRecursive(sll.head, 4));
+		System.out.println("Search a perticular Key in Linked List : "+sll.searchPerticularKeyByRecursive(sll.head, 5));
+		System.out.println("Search a perticular Key in Linked List : "+sll.searchPerticularKeyByRecursive(sll.head, 6));
+		System.out.println("Search a perticular Key in Linked List : "+sll.searchPerticularKeyByRecursive(sll.head, 7));
+		System.out.println("-------------------------------------------------------------------------------");
+		sll.swapNodes(4, 7);
+		System.out.println(sll.printList());
+		sll.insertBeforeHead(1);
+		sll.insertAtAfterPosition(5, 1);
+		sll.insertBeforeHead(0);
+		sll.insertAtAfterPosition(8, 6);
+		System.out.println("-------------------------------------------------------------------------------");
+		System.out.println(sll.printList());
+		System.out.println("Nth position value in a Linked list : "+sll.getNthNodeValue(3));
+		System.out.println("Find the Middle of the linked list : "+sll.findMiddleNode());
+		
 	}
 	
 }

@@ -16,8 +16,8 @@ package com.raghu.DS.SingleLinkedList;
  */
 public class SingleLinkedList {
 
-	int length;
-	Node head;
+	public int length;
+	public Node head;
 
 	public SingleLinkedList() {
 		length = 0;
@@ -123,15 +123,14 @@ public class SingleLinkedList {
 		return data;
 	}
 
-	
-	// case  : 3 
-	public int deleteFromPosition(int position){
-		if(head == null){
+	// case : 3
+	public int deleteFromPosition(int position) {
+		if (head == null) {
 			return 0;
 		}
 		Node newNode = head;
 		Node preNode = head;
-		for(int i = 0 ; i < position ; i++){
+		for (int i = 0; i < position; i++) {
 			preNode = newNode;
 			newNode = newNode.getNext();
 		}
@@ -141,4 +140,224 @@ public class SingleLinkedList {
 		length--;
 		return data;
 	}
+
+	/***
+	 * Problem 2 : Find the Nth element of a linked list from the end
+	 * 
+	 * 
+	 * @param Nth
+	 * @return
+	 */
+	public int retrunNthNodeFromEnd(int Nth) {
+
+		if (head == null) {
+			return 0;
+		}
+		if (Nth > length) {
+			return 0;
+		}
+		Node pre = head, next = head;
+		for (int i = 0; i < (length - Nth); i++) {
+			pre = next;
+			next = next.getNext();
+		}
+		pre.setNext(next.getNext());
+		int nodeData = next.getData();
+		next.setNext(null);
+		length--;
+		return nodeData;
+	}
+
+	/////////////////// GeeksforGeeks Problems ////////////////////////
+
+	/**
+	 * Question 7 : find the length of the linked list
+	 * 
+	 */
+	public int getListLength() {
+		if (head == null) {
+			return 0;
+		}
+		int count = 1;
+		Node temp = head;
+		while (temp.getNext() != null) {
+			count = count + 1;
+			temp = temp.getNext();
+		}
+		return count;
+	}
+
+	/***
+	 * Question 8 : Search an element is linked list 
+	 * Desc : Write a Java function that searches a given key ‘x’ in a given singly linked list. The
+	 * 		  function should return true if x is present in linked list and false
+	 *        otherwise.
+	 */
+	// linear search
+	public boolean searchPerticularKeyByLinear(int key) {
+		if (head == null) {
+			return false;
+		}
+		if (head.getData() == key) {
+			return true;
+		}
+		Node temp = head;
+		while (temp.getNext() != null) {
+			if (temp.getNext().getData() == key) {
+				return true;
+			}
+			temp = temp.getNext();
+		}
+		return false;
+	}
+
+	// recursive search
+	public boolean searchPerticularKeyByRecursive(Node head, int key) {
+		Node temp = head;
+		if(temp == null){
+			return false;
+		}
+		if(temp.getData() == key){
+			return true;
+		}
+		return searchPerticularKeyByRecursive(temp.getNext(), key);
+	}
+	
+	
+	/***
+	 *   Question 10 : Swap nodes in a linked list without swapping data
+	 *   Desc : Given a linked list and two keys in it, swap nodes for two given keys. 
+	 *          Nodes should be swapped by changing links. Swapping data of nodes may be expensive in many situations 
+	 *          when data contains many fields.
+	 *   Ex : Input:  10->15->12->13->20->14,  x = 12, y = 20
+	 *        Output: 10->15->20->13->12->14
+	 */
+	
+	
+//	public void swapListNodeData(int x, int y){
+//		if(x == y){
+//			return;
+//		}
+//		Node  preX = null , tempX = head;
+//		while(tempX.getData() != x){
+//			preX =tempX;
+//			tempX = tempX.getNext();
+//		}
+//		System.out.println("PreX : "+preX.getData());
+//		Node preY = null , tempY = head;
+//		while(tempY.getData() != y){
+//			preY = tempY;
+//			tempY = tempY.getNext();
+//		}
+//		System.out.println("PreY : "+preY.getData());
+//		if(preX != null)
+//			preX.setNext(tempY);
+//		else
+//			head = tempY;
+//		
+//		if(preY == null)
+//			preY.setNext(tempX);
+//		else
+//			head = tempX;
+//		Node temp = tempX.getNext();
+//		tempX.setNext(tempY.getNext());
+//		tempY.setNext(temp);
+//		
+//	}
+	 public void swapNodes(int x, int y)
+	    {
+	        if (x == y){
+	        	return;
+	        }
+	        Node prevX = null, currX = head;
+	        while (currX != null && currX.getData() != x)
+	        {
+	            prevX = currX;
+	            currX = currX.getNext();
+	        }
+	        Node prevY = null, currY = head;
+	        while (currY != null && currY.getData() != y)
+	        {
+	            prevY = currY;
+	            currY = currY.getNext();
+	        }
+	        if (currX == null || currY == null){
+	        	return;
+	        }
+	       if (prevX != null){
+	    	   prevX.setNext(currY);
+	       }
+	       else{
+	    	   head = currY;
+	       }
+	        if (prevY != null){
+	        	prevY.setNext(currX);
+	        }else{
+	        	head = currX;
+	        }
+	        Node temp = currX.getNext();
+	        currX.setNext(currY.getNext());
+	        currY.setNext(temp);
+	    }
+	
+	
+	/****
+	 *   Question 11 : Write a function to get Nth node in a Linked List
+	 *   Desc :  Write a GetNth() function that takes a linked list and an integer index and returns the data value stored in the node at that index position.
+	 *   Ex : 
+	 *   	Input:  1->10->30->14,  index = 2 
+	 *   	Output: 30 
+	 *   	The node at index 2 is 30
+	 *   
+	 */
+	 public int getNthNodeValue(int key){
+		 if(key > length){
+			 return 0;
+		 }
+		 if(key < 0){
+			 return 0;
+		 }
+		 Node temp = head;
+		 for(int i  = 0 ; i < key ; i++){
+			 temp = temp.getNext();
+		 }
+		 return temp.getData();
+	 }
+	
+	
+	 /***
+	  *   Question  12 : Find the middle of a given linked list in Java
+	  *   Desc : Given a singly linked list, find middle of the linked list. For example, if given linked list is 1->2->3->4->5 then output should be 3.
+	  *          If there are even nodes, then there would be two middle nodes, we need to print second middle element. For example, 
+	  *          if given linked list is 1->2->3->4->5->6 then output should be 4.
+	  * 
+	  */
+	 public int findMiddleNode(){
+		Node pre = head;
+		Node next = head;
+		if(head != null){
+			while(next != null && next.getNext() != null){
+				next = next.getNext().getNext();
+				pre = pre.getNext();
+			}
+		}
+		 return pre.getData();
+	 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
