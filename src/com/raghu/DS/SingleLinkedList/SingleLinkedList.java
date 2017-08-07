@@ -234,36 +234,6 @@ public class SingleLinkedList {
 	 */
 	
 	
-//	public void swapListNodeData(int x, int y){
-//		if(x == y){
-//			return;
-//		}
-//		Node  preX = null , tempX = head;
-//		while(tempX.getData() != x){
-//			preX =tempX;
-//			tempX = tempX.getNext();
-//		}
-//		System.out.println("PreX : "+preX.getData());
-//		Node preY = null , tempY = head;
-//		while(tempY.getData() != y){
-//			preY = tempY;
-//			tempY = tempY.getNext();
-//		}
-//		System.out.println("PreY : "+preY.getData());
-//		if(preX != null)
-//			preX.setNext(tempY);
-//		else
-//			head = tempY;
-//		
-//		if(preY == null)
-//			preY.setNext(tempX);
-//		else
-//			head = tempX;
-//		Node temp = tempX.getNext();
-//		tempX.setNext(tempY.getNext());
-//		tempY.setNext(temp);
-//		
-//	}
 	 public void swapNodes(int x, int y)
 	    {
 	        if (x == y){
