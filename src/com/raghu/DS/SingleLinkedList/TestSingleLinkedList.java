@@ -55,7 +55,7 @@ public class TestSingleLinkedList {
 		System.out.println("Total length : "+sll.length);
 		System.out.println("Deleted Nth Node from the end : "+sll.retrunNthNodeFromEnd(4));	
 		System.out.println(sll.printList());
-		System.out.println("Length of the Linked List : "+sll.getListLength());
+		System.out.println("Length of the Linked List : "+sll.getListLength(sll.head));
 		System.out.println("Search a perticular Key in Linked List : "+sll.searchPerticularKeyByLinear(8));
 		System.out.println("Search a perticular Key in Linked List : "+sll.searchPerticularKeyByLinear(2));
 		System.out.println("Search a perticular Key in Linked List : "+sll.searchPerticularKeyByLinear(4));
@@ -81,7 +81,121 @@ public class TestSingleLinkedList {
 		System.out.println(sll.printList());
 		System.out.println("Nth position value in a Linked list : "+sll.getNthNodeValue(3));
 		System.out.println("Find the Middle of the linked list : "+sll.findMiddleNode());
+		System.out.println("-------------------------------------------------------------------------------");
+		sll.insertAtAfterPosition(4, 5);
+		sll.insertAtAfterPosition(4, 2);
+		sll.insertAtAfterPosition(4, 6);
+		sll.insertAtAfterPosition(4, 7);
+		System.out.println(sll.printList());
+		System.out.println(" Number 4 is repeating time in linked list : "+sll.countNumberOfTimeExist(4));
+//		System.out.println("Reverse of the given linked list : "+sll.reverseLinkedList(sll.head));
+		System.out.println("-------------------------------------------------------------------------------");
+		System.out.println(sll.printList());
+		// up to now there is no loop in the linked list so we will get the false 
+		System.out.println("Find that Linked list contain loop ( cycle) or not : "+sll.findLoopInLinkedList());
+		/**
+		 *   we will comment the below code afte testing of the sll.findLoopInLinkedList() method 
+		 *    for testing the above method plz uncomment sll.createLoopInLinkedList(); this method
+		 *    this method can be eooect on another methods thats why iwe will comment this method 
+		 */
+//		sll.createLoopInLinkedList();
+		// Now we have a loop in the linked list so we will get true of the cycle / loop method output 
+		System.out.println("Find that Linked list contain loop ( cycle) or not : "+sll.findLoopInLinkedList());
+		SingleLinkedList l1 = new SingleLinkedList();
+		l1.insertBeforeHead(5);
+		l1.insertAfterTail(10);
+		l1.insertAfterTail(15);
+		System.out.println("L1 Linked list : "+l1.printList());
 		
+		SingleLinkedList l2 = new SingleLinkedList();
+		l2.insertBeforeHead(2);
+		l2.insertAfterTail(3);
+		l2.insertAfterTail(20);
+		System.out.println("L1 Linked list : "+l2.printList());
+		l1.insertNodeInSortedLinkedList(12);
+		System.out.println("Merge of two Sorted linked List : "+l1.printList());
+		l1.insertNodeInSortedLinkedList(14);
+		System.out.println("Merge of two Sorted linked List : "+l1.printList());
+		l1.insertNodeInSortedLinkedList(9);
+		System.out.println("Merge of two Sorted linked List : "+l1.printList());
+		Node test = sll.head;
+		sll.deleteANodeOnGivenReference(test.getNext().getNext().getNext().getNext());
+		System.out.println("Linked List After deleting a given Node from the LinkedList : "+sll.printList());
+		
+		SingleLinkedList list1 = new SingleLinkedList();
+		list1.insertBeforeHead(2);
+		list1.insertAfterTail(4);
+		list1.insertAfterTail(6);
+		list1.insertAfterTail(8);
+		list1.insertAfterTail(9);
+		list1.insertAfterTail(10);
+		list1.insertAfterTail(11);
+		SingleLinkedList list2 = new SingleLinkedList();
+		list2.insertBeforeHead(1);
+		list2.insertAfterTail(3);
+		list2.insertAfterTail(5);
+		list2.insertAfterTail(7);
+		Node test2 = list2.head.getNext().getNext().getNext();
+		Node test3 = list1.head.getNext().getNext();
+		test2.setNext(test3);
+		/**                                
+		 *                          [1]
+		 *                          /
+		 *                        [3]
+		 *                        /
+		 *                      [5]  
+		 *           [2]        /     
+		 *             \      [7]
+		 *              [4]   /
+		 *                \  /   
+		 *                 [6]        ---------------------->  [6] is the intraction point of the below problem 
+		 *                   \
+		 *                    [8]
+		 *                      \
+		 *                      [9] 
+		 *                        \
+		 *                        [10]
+		 *                          \
+		 *                          [11]
+		 */
+		
+		/*** Appraoch : 1
+		 *   Time complxity of the below method is O(MN)
+		 *   M = Number of node in the first Linked List 
+		 *   N = Number of node in the second Linked List 
+		 */
+		System.out.println("Approach one Intraction point of the given two linked list : "+sll.intractionNodeOfTwoLinkedListMethod_1(list1.head, list2.head));
+		
+		/*** Appraoch : 2
+		 *   Time complxity of the below method is O(M+N)
+		 *   M = Number of node in the first Linked List 
+		 *   N = Number of node in the second Linked List 
+		 */
+		System.out.println("Approach two Intraction point of the given two linked list : "+sll.intractionNodeOfTwoLinkedListMethod_2(list1.head, list2.head));
+		
+		SingleLinkedList list3 = new SingleLinkedList();
+		list3.insertBeforeHead(11);
+		list3.insertBeforeHead(11);
+		list3.insertBeforeHead(11);
+		list3.insertAfterTail(21);
+		list3.insertAfterTail(43);
+		list3.insertAfterTail(43);
+		list3.insertAfterTail(60);
+		System.out.println("Remove duplicate Node from the Linked List : "+list3.printList());
+		sll.removeDuplicateNodeFromSortedLinkedLinkedList(list3.head);
+		System.out.println("Remove duplicate Node from Sorted Linked List : "+list3.printList());
+		SingleLinkedList list4 = new SingleLinkedList();
+		list4.insertBeforeHead(12);
+		list4.insertBeforeHead(11);
+		list4.insertBeforeHead(12);
+		list4.insertAfterTail(21);
+		list4.insertAfterTail(41);
+		list4.insertAfterTail(43);
+		list4.insertAfterTail(21);
+		System.out.println("Remove duplicate Node from Unsorted Linked List : "+list4.printList());
+		sll.removeDuplicateNdeFromUnSortedLinkedList(list4.head);
+		System.out.println("Remove duplicate Node from Unsorted Linked List : "+list4.printList());
 	}
+	
 	
 }
