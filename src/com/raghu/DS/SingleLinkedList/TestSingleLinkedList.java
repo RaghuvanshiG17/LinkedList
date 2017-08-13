@@ -205,6 +205,22 @@ public class TestSingleLinkedList {
 		System.out.println("Linked list before pairwise swap : "+list5.printList());
 		sll.swapPairWiseNode(list5.head);
 		System.out.println("Linked list after pairwise swap : "+list5.printList());
+		sll.moveLastElementAsFront();
+		System.out.println("Linked List after move Last element af front(head) : "+sll.printList());
+		
+		SingleLinkedList list6 = new SingleLinkedList();
+		list6.insertBeforeHead(1);
+		list6.insertAfterTail(2);
+		list6.insertAfterTail(3);
+		list6.insertAfterTail(4);
+		list6.insertAfterTail(5);
+		System.out.println("Linked List6 : "+list6.printList());
+//		sll.deleteAlternateNode(list6.head);
+//		System.out.println("Delete alternate nodes of a Linked List using by linear solution : "+list6.printList());
+		sll.deleteAlternateNodeRecursive(list6.head);
+		System.out.println("Delete alternate nodes of a Linked List using By Recursive Solution : "+list6.printList());
+		
+		
 	}
 	
 	

@@ -573,4 +573,91 @@ public class SingleLinkedList {
 		}
 	}
 	
+	/***
+	 *   Question 29 : Move last element to front of a given Linked List.
+	 *   Desc        : Write a C function that moves last element to front in a given Singly Linked List. For example, 
+	 *   Ex          : 1->2->3->4->5, 
+	 *   Result      : 5->1->2->3->4.
+	 * 
+	 */
+	public void moveLastElementAsFront(){
+		Node next = head;
+		Node pre = null;
+		if(head == null){
+			return ;
+		}
+		while(next != null && next.getNext() != null){
+			pre= next;
+			next = next.getNext();
+		}
+		next.setNext(head);
+		pre.setNext(null);
+		head = next;
+	}
+	
+	/***
+	 *  Question 30 : Delete alternate nodes of a Linked List
+	 *  Desc        : Given a Singly Linked List, starting from the second node delete all alternate nodes of it.
+	 *  Ex          : 1->2->3->4->5
+	 *  Result      : 1->3->5
+	 */
+	public void deleteAlternateNode(Node head){
+		Node pre =  head;
+		Node next = head.getNext();
+		Node temp;
+		while(pre != null && next != null){
+			pre.setNext(next.getNext());
+			temp = next;
+			temp.setNext(null);
+			pre = pre.getNext();
+			if(pre != null){
+				next = pre.getNext();
+			}
+			temp.setNext(null);
+		}
+		
+	}
+
+	/***
+	 * Recursive solution of the above problem.
+	 * @param head
+	 */
+	public void deleteAlternateNodeRecursive(Node head){
+		if(head == null){
+			return ;
+		}
+		Node pre = head.getNext();
+		if(pre == null){
+			return ;
+		}
+		head.setNext(pre.getNext());
+		pre.setNext(null);
+		deleteAlternateNodeRecursive(head.getNext());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
