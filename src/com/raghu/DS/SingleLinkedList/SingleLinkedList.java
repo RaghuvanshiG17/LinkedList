@@ -34,17 +34,17 @@ public class SingleLinkedList {
 
 	// printing the Single Linked List element
 	public String printList() {
-		String result = "[ ";
+		String result = "[";
 		if (head == null) {
 			return result + " ]";
 		}
 		result = result + head.getData();
 		Node temp = head;
 		while (temp.getNext() != null) {
-			result = result + " , " + temp.getNext().getData();
+			result =result + "]-->[" + temp.getNext().getData();
 			temp = temp.getNext();
 		}
-		result = result + " ]";
+		result = result + "]";
 		return result;
 	}
 
@@ -174,7 +174,7 @@ public class SingleLinkedList {
 	 * Question 7 : find the length of the linked list
 	 * 
 	 */
-	public int getListLength() {
+	public int getListLength(Node head) {
 		if (head == null) {
 			return 0;
 		}
@@ -313,6 +313,270 @@ public class SingleLinkedList {
 		}
 		 return pre.getData();
 	 }
+	
+	
+	/***
+	 *   Question  13 : Write a function that counts the number of times a given int occurs in a Linked List
+	 *   Desc         : Given a singly linked list and a key, count number of occurrences of given key in linked list. 
+	 *   Example      : if given linked list is 1->2->1->2->1->3->1 and given key is 1, then output should be 4.
+	 *  
+	 */
+	 public int countNumberOfTimeExist(int a){
+		 if(head == null){
+			 return 0;
+		 }
+		 Node temp = head;
+		 int count = 0;
+		 while(temp.getNext() != null){
+			 if(temp.getData() == a){
+				 count = count+1;
+			 }
+			 temp = temp.getNext();
+		 }
+		 return count;
+	 }
+	
+	 
+	
+	/****
+	 *  Question 16 :  Reverse a linked list 
+	 *  Desc        :  Given pointer to the head node of a linked list, the task is to reverse the linked list. 
+	 *   			   We need to reverse the list by changing links between nodes.
+	 *  Example     :  1->2->3->4->NULL
+	 *  			   4->3->2->1->NULL
+	 */
+	
+//	 public Node reverseLinkedList(Node head){
+//		if(head == null){
+//			return null;
+//		}
+//		Node pre = null;
+//		Node next = null;
+//		
+//	 }
+//	 
+	
+    /***
+     *  Question  17 : Detect loop in a linked list
+     *  Desc         : Given a linked list, check if the the linked list has loop or not. Below diagram shows a linked list with a loop.
+     * 
+     */
+	
+	public boolean findLoopInLinkedList(){
+		Node slow = head , fast = head;
+		while(fast != null && fast.getNext() != null){
+			slow = slow.getNext();
+			fast = fast.getNext().getNext();
+			if(slow == fast){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	/***
+	 *  Question  : Create a loop in the linked list 
+	 *  Desc      : We have to traverse linked list and at the tail of the linked list we will assign any node address instead of the null
+	 *  
+	 */
+	public void createLoopInLinkedList(){
+		Node temp  = head;
+		while(temp.getNext() != null){
+			temp = temp.getNext();
+		}
+		temp.setNext(head.getNext().getNext());
+	}
+	
+	/***
+	 *  Question 20 : Given a linked list which is sorted, how will you insert in sorted way
+	 *  Desc        : Given a sorted linked list and a value to insert, write a function to insert the value in sorted way. 
+	 */
+	public void insertNodeInSortedLinkedList(int data) {
+		Node newNode = new Node(data);
+		if(head == null){
+			head = newNode;
+		}
+		Node temp = head;
+		while(temp.getNext() != null && temp.getNext().getData() < data){
+				temp = temp.getNext();
+		}
+		newNode.setNext(temp.getNext());
+		temp.setNext(newNode);
+		length++;
+	}
+	
+	/***
+	 *  Question 21 : Given only a pointer/reference to a node to be deleted in a singly linked list, how do you delete it?
+	 *  Desc        : Given a pointer to a node to be deleted, delete the node. Note that we don’t have pointer to head node.
+	 * 
+	 */
+	public void deleteANodeOnGivenReference(Node node) {
+		Node temp = head;
+		if (node == temp) {
+			head = head.getNext();
+			temp.setNext(null);
+		}
+		while (temp.getNext() != null && temp.getNext() != node) {
+			temp = temp.getNext();
+		}
+		temp.setNext(node.getNext());
+		node.setNext(null);
+		length--;
+	}
+
+	/***
+	 *   Question  23 : Write a function to get the intersection point of two Linked Lists.
+	 *   Desc         : There are two singly linked lists in a system. By some programming error the end node of one of the linked list got linked into the second list, 
+	 *   				forming a inverted Y shaped list. Write a program to get the point where two linked list merge.
+	 * 
+	 */
+	
+	public int intractionNodeOfTwoLinkedListMethod_1(Node head1, Node head2) {
+		if (head1 == null || head2 == null) {
+			return -1;
+		}
+		Node current1 = head1;
+		Node current2 = head2;
+		while (current1.getNext() != null) {
+			while (current2.getNext() != null) {
+				if (current1 == current2) {
+					return current1.getData();
+				}
+				current2 = current2.getNext();
+			}
+			current2 = head2;
+			current1 = current1.getNext();
+		}
+		return -1;
+	}
+
+	/***
+	 * 
+	 * @param head1
+	 * @param head2
+	 * @return
+	 */
+	public int intractionNodeOfTwoLinkedListMethod_2(Node head1 , Node head2){
+		int length1 = getListLength(head1);
+		int length2 = getListLength(head2);
+		int difference = 0;
+		if(length1 > length2){
+			difference = length1-length2;
+			return getInteractionNode(difference, head1 , head2);
+		}else{
+			difference = length2-length1;
+			return getInteractionNode(difference, head2 , head1);
+		}
+	}
+
+	/**
+	 * @param difference
+	 * @param head1
+	 * @param head2
+	 * @return
+	 */
+	private int getInteractionNode(int difference, Node head1, Node head2) {
+	 Node current1 = head1;
+	 Node current2 = head2;
+	 for(int i = 0 ;  i < difference ; i++){
+		 if (current1 == null) {
+			 return 0;
+		}
+		current1 = current1.getNext();
+	 }
+	 while(current1!= null && current2!= null){
+		 if(current1.getData() == current2.getData()){
+			 return current1.getData();
+		 }
+		 current1 = current1.getNext();
+		 current2 = current2.getNext();
+	 }
+		return 0;
+	}
+	
+	/****
+	 *   Question  25 : Remove duplicates from a sorted linked list.
+	 *   Desc         : Write a removeDuplicates() function which takes a list sorted in non-decreasing order and deletes any duplicate nodes from the list. 
+	 *   				The list should only be traversed once.
+	 *   Ex           : 11->11->11->21->43->43->60 then removeDuplicates(),
+	 *   Result       : 11->21->43->60.
+	 * 
+	 */
+	
+	public void removeDuplicateNodeFromSortedLinkedLinkedList(Node head){
+		Node pre = head;
+		Node temp ;
+		if(head == null){
+			return;
+		}
+		while(pre.getNext() != null){
+			
+			if (pre.getData() == pre.getNext().getData()) {
+				temp = pre.getNext();
+				pre.setNext(pre.getNext().getNext());
+				temp.setNext(null);
+			}else{
+				pre = pre.getNext();
+			}
+			
+		}
+	}
+	
+	
+	/***
+	 *   Question  26 : Remove duplicates from an unsorted linked list.
+	 *   Desc         : Write a removeDuplicates() function which takes a list and deletes any duplicate nodes from the list. 
+	 *   				The list is not sorted.
+	 *   Ex           : 12->11->12->21->41->43->21.
+	 *   Result       : 12->11->21->41->43.				
+	 * 
+	 */
+	public void removeDuplicateNdeFromUnSortedLinkedList(Node head){
+		Node pre = null , next = null , dup = null;
+		pre = head;
+		while(pre != null && pre.getNext() != null){
+			next = pre;
+			while(next.getNext() != null){
+				if(pre.getData() == next.getNext().getData()){
+					dup = next.getNext();
+					next.setNext(next.getNext().getNext());
+					dup.setNext(null);
+				}else{
+					next = next.getNext();
+				}
+			}
+			pre = pre.getNext();
+		}
+	}
+	
+	/***
+	 *  Question  27 : Pairwise swap elements of a given linked list.
+	 *  Desc         : Given a singly linked list, write a function to swap elements pairwise.
+	 *  Ex 1         : 1->2->3->4->5 
+	 *  Result       : 2->1->4->3->5, 
+	 *  Ex 2         : 1->2->3->4->5->6 
+	 *  Result       : 2->1->4->3->6->5.
+	 * 
+	 */
+	
+	public void swapPairWiseNode(){
+		Node temp = head;
+		if(head == null){
+			return ;
+		}
+		while(temp != null && temp.getNext()!= null){
+			
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
