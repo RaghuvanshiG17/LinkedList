@@ -195,6 +195,16 @@ public class TestSingleLinkedList {
 		System.out.println("Remove duplicate Node from Unsorted Linked List : "+list4.printList());
 		sll.removeDuplicateNdeFromUnSortedLinkedList(list4.head);
 		System.out.println("Remove duplicate Node from Unsorted Linked List : "+list4.printList());
+		SingleLinkedList list5 = new SingleLinkedList();
+		list5.insertBeforeHead(1);
+		list5.insertAfterTail(2);
+		list5.insertAfterTail(3);
+		list5.insertAfterTail(4);
+		list5.insertAfterTail(5);
+		list5.insertAfterTail(6);
+		System.out.println("Linked list before pairwise swap : "+list5.printList());
+		sll.swapPairWiseNode(list5.head);
+		System.out.println("Linked list after pairwise swap : "+list5.printList());
 	}
 	
 	

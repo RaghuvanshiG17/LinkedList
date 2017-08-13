@@ -560,13 +560,16 @@ public class SingleLinkedList {
 	 * 
 	 */
 	
-	public void swapPairWiseNode(){
+	public void swapPairWiseNode(Node head){
 		Node temp = head;
 		if(head == null){
 			return ;
 		}
 		while(temp != null && temp.getNext()!= null){
-			
+			int k = temp.getData();
+			temp.setData(temp.getNext().getData());
+			temp.getNext().setData(k);
+			temp = temp.getNext().getNext();
 		}
 	}
 	
