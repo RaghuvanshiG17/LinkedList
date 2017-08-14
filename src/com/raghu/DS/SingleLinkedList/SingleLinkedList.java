@@ -346,15 +346,19 @@ public class SingleLinkedList {
 	 *  			   4->3->2->1->NULL
 	 */
 	
-//	 public Node reverseLinkedList(Node head){
-//		if(head == null){
-//			return null;
-//		}
-//		Node pre = null;
-//		Node next = null;
-//		
-//	 }
-//	 
+	 public Node reverseLinkedList(Node head){
+		Node pre = null;
+		Node current = head;
+		Node next = null;
+		while(current != null){
+			next = current.getNext();
+			current.setNext(pre);
+			pre = current;
+			current = next;
+		}
+		return pre;
+	 }
+	 
 	
     /***
      *  Question  17 : Detect loop in a linked list
@@ -602,18 +606,17 @@ public class SingleLinkedList {
 	 *  Result      : 1->3->5
 	 */
 	public void deleteAlternateNode(Node head){
-		Node pre =  head;
+		Node pre = head;
 		Node next = head.getNext();
-		Node temp;
+		Node temp ;
 		while(pre != null && next != null){
-			pre.setNext(next.getNext());
 			temp = next;
+			pre.setNext(next.getNext());
 			temp.setNext(null);
 			pre = pre.getNext();
 			if(pre != null){
 				next = pre.getNext();
 			}
-			temp.setNext(null);
 		}
 		
 	}
@@ -637,14 +640,32 @@ public class SingleLinkedList {
 	
 	
 	
+	/***
+	 *  Questio 33 : Identical Linked Lists.
+	 *  Desc       : Two Linked Lists are identical when they have same data and arrangement of data is also same.
+	 *  Ex         : a : 1->2->3 , b : 1->2->3
+	 *  Result     : true (identically).
+	 */
+	
+	/***
+	 *   Linked approach 
+	 */
+	public boolean checkTwoLinkedIsIdentically(Node a , Node b){
+		Node l1 = a;
+		Node l2 = b;
+		while(l1 != null && l2 != null){
+			if(l1.getData() != l2.getData()){
+				System.out.println(" l1 :"+l1.getData()+" , l2 : "+l2.getData());
+				return false;
+			}
+			l1 = l1.getNext();
+			l2 = l2.getNext();
+		}
+		return (l1 == null && l2==null);
+	}
 	
 	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

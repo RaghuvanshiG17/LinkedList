@@ -217,10 +217,22 @@ public class TestSingleLinkedList {
 		System.out.println("Linked List6 : "+list6.printList());
 //		sll.deleteAlternateNode(list6.head);
 //		System.out.println("Delete alternate nodes of a Linked List using by linear solution : "+list6.printList());
-		sll.deleteAlternateNodeRecursive(list6.head);
-		System.out.println("Delete alternate nodes of a Linked List using By Recursive Solution : "+list6.printList());
-		
-		
+//		sll.deleteAlternateNodeRecursive(list6.head);
+//		System.out.println("Delete alternate nodes of a Linked List using By Recursive Solution : "+list6.printList());
+		SingleLinkedList list7 = new SingleLinkedList();
+		list7.insertBeforeHead(1);
+		list7.insertAfterTail(2);
+		list7.insertAfterTail(3);
+		list7.insertAfterTail(4);
+		list7.insertAfterTail(5);
+		System.out.println("List 6 :"+list6.printList());
+		System.out.println("List 7 :"+list7.printList());
+		System.out.println("Check weather two linked list is Identically of not : "+sll.checkTwoLinkedIsIdentically(list6.head, list7.head));
+		sll.reverseLinkedList(list7.head);
+		System.out.println("----------------------");
+		System.out.println(sll.printList());
+		sll.head = sll.reverseLinkedList(sll.head);
+		System.out.println(sll.printList());
 	}
 	
 	
